@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: client-deployment
 spec:
-  replicas: 3
-  selector:
+  replicas: 3     # Jumlah Pod yg akan dibuat
+  selector:       # 3 baris ke bawah berperan menghubungkan Service dgn Deployment
     matchLabels:
       component: web
-  template:
+  template:          # Bagian ini ke bawah berperan sebagai Pod
     metadata:
       labels:
         component: web
     spec:
-      containers:
+      containers:   # tanda strip (-) di bawah adalah List. Artinya kita bisa mendaftarkan berbagai macam image
         - name: client
           image: stephengrider/multi-client
           ports:

@@ -23,11 +23,16 @@ spec:
             - containerPort: 5432
           volumeMounts:
             - name: postgres-storage
+            # Data yg awalnya di mountPath akan dipindahkan ke PVC utk disimpan 
               mountPath: /var/lib/postgresql/data
+            # subPath "postgres" adalah nama folder di PVC tempat kita menyimpan data 
               subPath: postgres
           env:
-            - name: PGPASSWORD
+            - name: POSTGRES_PASSWORD # Nama ini default dari image officialnya.
               valueFrom:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
+
+
+                  

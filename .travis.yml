@@ -16,14 +16,20 @@ before_install:
   - gcloud components update kubectl
   # "activate-service-account" itu seperti IAM di AWS | "service-account.json" akan kita generate             
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project skilful-berm-214822
-  - gcloud config set compute/zone us-central1-a
-  - gcloud container clusters get-credentials multi-cluster
+
+  # Masukan ID nama project di GCP (ingat, bukan nama project)
+  - gcloud config set project u-kubernetes
+  - gcloud config set compute/zone asia-southeast1-a
+  - gcloud container clusters get-credentials u-kubernetes-cluster
+
+  # Masukan Docker Hub username dan password sebagai environment variable di Travis
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+  
   - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
 
-script:
-  - docker run stephengrider/react-test npm test -- --coverage
+  script:
+    - docker run -e CI=true USERNAME/react-test npm test
 
 deploy:
   provider: script
