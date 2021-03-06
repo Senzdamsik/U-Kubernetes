@@ -27,18 +27,18 @@ before_install:
   # - gcloud config set compute/zone asia-southeast1-a
   # - gcloud container clusters get-credentials u-kubernetes-cluster
 
-  # Masukan Docker Hub username dan password sebagai environment variable di Travis.
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # # Masukan Docker Hub username dan password sebagai environment variable di Travis.
+  # - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 
   - docker build -t senzdamsik/multi-client-kube -f ./client/Dockerfile.dev ./client
 
-  script:
-    - docker run -e CI=true senzdamsik/multi-client-kube npm test
+script:
+  - docker run -e CI=true senzdamsik/multi-client-kube npm test
 
-deploy:
-  provider: script
-  script: bash ./deploy.sh
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: bash ./deploy.sh
+#   on:
+#     branch: master
 
