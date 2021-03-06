@@ -10,22 +10,22 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
-  # Saat kita meng-encrypt file keypair.json dari GCP (dengan Travis CLI), Travis CLI akan men-generate script di 1 baris bawah ini
-  - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
+  # # Saat kita meng-encrypt file keypair.json dari GCP (dengan Travis CLI), Travis CLI akan men-generate script di 1 baris bawah ini
+  # - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   
-  # Install GCP SDK di Travis
-  - curl https://sdk.cloud.google.com | bash > /dev/null;
-  - source $HOME/google-cloud-sdk/path.bash.inc
+  # # Install GCP SDK di Travis
+  # - curl https://sdk.cloud.google.com | bash > /dev/null;
+  # - source $HOME/google-cloud-sdk/path.bash.inc
 
-  # gcloud adalah api untuk tersambung ke GCP
-  - gcloud components update kubectl
-  # "activate-service-account" itu seperti IAM di AWS | Ini perintah utk men-decrypt "service-account.json"              
-  - gcloud auth activate-service-account --key-file service-account.json
+  # # gcloud adalah api untuk tersambung ke GCP
+  # - gcloud components update kubectl
+  # # "activate-service-account" itu seperti IAM di AWS | Ini perintah utk men-decrypt "service-account.json"              
+  # - gcloud auth activate-service-account --key-file service-account.json
 
-  # Masukan ID nama project di GCP (ingat, bukan nama project)
-  - gcloud config set project u-kubernetes
-  - gcloud config set compute/zone asia-southeast1-a
-  - gcloud container clusters get-credentials u-kubernetes-cluster
+  # # Masukan ID nama project di GCP (ingat, bukan nama project)
+  # - gcloud config set project u-kubernetes
+  # - gcloud config set compute/zone asia-southeast1-a
+  # - gcloud container clusters get-credentials u-kubernetes-cluster
 
   # Masukan Docker Hub username dan password sebagai environment variable di Travis.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
