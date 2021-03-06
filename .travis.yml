@@ -27,7 +27,7 @@ before_install:
   - gcloud config set compute/zone asia-southeast1-a
   - gcloud container clusters get-credentials u-kubernetes-cluster
 
-  # Masukan Docker Hub username dan password sebagai environment variable di Travis
+  # Masukan Docker Hub username dan password sebagai environment variable di Travis.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 
