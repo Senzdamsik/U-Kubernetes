@@ -1,13 +1,13 @@
 sudo: required
 services:
   - docker
-env:
-  global:
-    # - "git rev-parse HEAD" adalah perintah di terminal utk mendapatkan Git SHA
-    # - Setelah Git SHA didapatkan, ia lalu dimasukan ke dalam variabel "SHA"
-    - SHA=$(git rev-parse HEAD)
-    # ini agar tidak ada prompt yg muncul
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+# env:
+#   global:
+#     # - "git rev-parse HEAD" adalah perintah di terminal utk mendapatkan Git SHA
+#     # - Setelah Git SHA didapatkan, ia lalu dimasukan ke dalam variabel "SHA"
+#     - SHA=$(git rev-parse HEAD)
+#     # ini agar tidak ada prompt yg muncul
+#     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
   # # Saat kita meng-encrypt file keypair.json dari GCP (dengan Travis CLI), Travis CLI akan men-generate script di 1 baris bawah ini
