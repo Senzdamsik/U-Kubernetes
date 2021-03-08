@@ -1,30 +1,5 @@
 
-# Sebelum dapet sertifikat https ===========================================================================
-
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-service
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: 'true'
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /?(.*)
-            backend:
-              serviceName: client-cluster-ip-service
-              servicePort: 3000
-          - path: /api/?(.*)
-            backend:
-              serviceName: server-cluster-ip-service
-              servicePort: 5000
-
-
-
-# # Setelah dapet sertifikat https ============================================================================
+# # Sebelum dapet sertifikat https ===========================================================================
 
 # apiVersion: networking.k8s.io/v1beta1
 # kind: Ingress
@@ -34,37 +9,62 @@ spec:
 #     kubernetes.io/ingress.class: nginx
 #     nginx.ingress.kubernetes.io/use-regex: 'true'
 #     nginx.ingress.kubernetes.io/rewrite-target: /$1
-#     cert-manager.io/cluster-issuer: "letsencrypt-prod" # Update dari yg di atas
-#     nginx.ingress.kubernetes.io/ssl-redirect: 'true'   # <== Update dari yg di atas | ini agar semua orang masuknya pake https
 # spec:
-#   tls:                                      # Update dari yg di atas
-#     - hosts:                                # Update dari yg di atas
-#         - senzdamsikubernetes.xyz           # Update dari yg di atas | untuk membuat 2 list seperti ini kita buat 2 indentation
-#         - www.senzdamsikubernetes.xyz       # Update dari yg di atas
-#       secretName: senzdamsikubernetes-xyz   # Update dari yg di atas
 #   rules:
-#     - host: senzdamsikubernetes.xyz         # Update dari yg di atas
 #     - http:
-#       paths:
-#         - path: /?(.*)
-#           backend:
-#             serviceName: client-cluster-ip-service
-#             servicePort: 3000
-#         - path: /api/?(.*)
-#           backend:
-#             serviceName: server-cluster-ip-service
-#             servicePort: 5000
-#     - host: www.senzdamsikubernetes.xyz             # Sampe terus ke bawah ini update dari yg di atas
-#     - http:                                         
-#       paths:
-#         - path: /?(.*)
-#           backend:
-#             serviceName: client-cluster-ip-service
-#             servicePort: 3000
-#         - path: /api/?(.*)
-#           backend:
-#             serviceName: server-cluster-ip-service
-#             servicePort: 5000
+#         paths:
+#           - path: /?(.*)
+#             backend:
+#               serviceName: client-cluster-ip-service
+#               servicePort: 3000
+#           - path: /api/?(.*)
+#             backend:
+#               serviceName: server-cluster-ip-service
+#               servicePort: 5000
+
+
+
+# Setelah dapet sertifikat https ============================================================================
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/cluster-issuer: "letsencrypt-prod" # Update dari yg di atas
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'   # <== Update dari yg di atas | ini agar semua orang masuknya pake https
+spec:
+  tls:                                      # Update dari yg di atas
+    - hosts:                                # Update dari yg di atas
+        - senzdamsikubernetes.xyz           # Update dari yg di atas | untuk membuat 2 list seperti ini kita buat 2 indentation
+        - www.senzdamsikubernetes.xyz       # Update dari yg di atas
+      secretName: senzdamsikubernetes-xyz   # Update dari yg di atas
+  rules:
+    - host: senzdamsikubernetes.xyz         # Update dari yg di atas
+    - http:
+      paths:
+        - path: /?(.*)
+          backend:
+            serviceName: client-cluster-ip-service
+            servicePort: 3000
+        - path: /api/?(.*)
+          backend:
+            serviceName: server-cluster-ip-service
+            servicePort: 5000
+    - host: www.senzdamsikubernetes.xyz             # Sampe terus ke bawah ini update dari yg di atas
+    - http:                                         
+      paths:
+        - path: /?(.*)
+          backend:
+            serviceName: client-cluster-ip-service
+            servicePort: 3000
+        - path: /api/?(.*)
+          backend:
+            serviceName: server-cluster-ip-service
+            servicePort: 5000
         
 
 
