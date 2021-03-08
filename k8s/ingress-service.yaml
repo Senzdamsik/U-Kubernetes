@@ -39,8 +39,8 @@ metadata:
 spec:
   tls:                                      # Update dari yg di atas
     - hosts:                                # Update dari yg di atas
-        - senzdamsikubernetes.xyz           # Update dari yg di atas | untuk membuat 2 list seperti ini kita buat 2 indentation
-        - www.senzdamsikubernetes.xyz       # Update dari yg di atas
+      - senzdamsikubernetes.xyz           # Update dari yg di atas | untuk membuat 2 list seperti ini kita buat 2 indentation
+      - www.senzdamsikubernetes.xyz       # Update dari yg di atas
       secretName: senzdamsikubernetes-xyz   # Update dari yg di atas
   rules:
     - host: senzdamsikubernetes.xyz         # Update dari yg di atas
