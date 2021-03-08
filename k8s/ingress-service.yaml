@@ -44,28 +44,31 @@ spec:
       secretName: senzdamsikubernetes-xyz   # Update dari yg di atas
   rules:
     - host: senzdamsikubernetes.xyz         # Update dari yg di atas
-    - http:
-      paths:
-        - path: /?(.*)
-          backend:
-            serviceName: client-cluster-ip-service
-            servicePort: 3000
-        - path: /api/?(.*)
-          backend:
-            serviceName: server-cluster-ip-service
-            servicePort: 5000
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
     - host: www.senzdamsikubernetes.xyz             # Sampe terus ke bawah ini update dari yg di atas
-    - http:                                         
-      paths:
-        - path: /?(.*)
-          backend:
-            serviceName: client-cluster-ip-service
-            servicePort: 3000
-        - path: /api/?(.*)
-          backend:
-            serviceName: server-cluster-ip-service
-            servicePort: 5000
-        
+      http:
+        paths:
+          - path: /?(.*)
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/?(.*)
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
+
+    
+
+
 
 
 # # Dari Course (belum update)==========================================================================================================================
